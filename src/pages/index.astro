@@ -30,7 +30,7 @@ const { meta, sections } = parseResume(raw);
         </p>
       </header>
 
-      {sections.map((section, i) => <ResumeSection client:load section={section} delay={i * 120} />)}
+      {sections.map((section) => <ResumeSection client:load section={section} />)}
 
       <footer class="mt-16 pt-8 border-t border-gray-200 text-sm text-gray-500 print:hidden">
         © {new Date().getFullYear()} {meta.name}. Built with Astro & Tailwind CSS.

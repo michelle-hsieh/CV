@@ -8,7 +8,7 @@
 
 ---
 
-## Professional Summary
+## Summary
 
 軟體工程師，具備工具平台開發、視覺化應用、全端系統與 CI/CD 自動化的實戰經驗，累積近 3 年產品交付，代表成果包含 CI/CD 自動化重構與規格解析工具開發（5 天 → 數分鐘）。
 擅長 legacy 環境根因分析與系統重構，能將不穩定問題轉為可維護、可自動化的工程解法。
@@ -18,14 +18,14 @@
 
 ## Skills
 
-- `Languages`: Java, JavaScript/TypeScript, C/C++, Python
+- `Languages`: Java, JavaScript/TypeScript, Python
 - `Frameworks & Libraries`: React, Vite, Eclipse RCP / CDT / DSF, JCEF, Firebase, Dexie, IndexedDB, jszip, pdfjs-dist
 - `Infrastructure & Tools`: Docker, Jenkins, Git, Linux, GDB, QF-Test
 - `AI Integration`: AI models, Function Calling, Prompt Engineering, AI Agent Workflow
 
 ---
 
-## Work Experience
+## Experience
 
 **晶心科技股份有限公司｜高級工程師｜2023.09 – 2026.05**
 - 負責嵌入式開發環境的診斷視圖與工具平台功能開發，包括效能分析、暫存器視覺化與多核心除錯。
@@ -36,7 +36,7 @@
 - 開發企業內部需求連署平台，協助集中彙整員工需求並提升需求管理效率。
 - 使用 Oracle 資料庫、Java Spring Boot 後端、Git 與 TFS 進行開發與版本控制。
 
-**個人 Side Project｜Personal Travel Dashboard｜2026.03 – Present**
+**Personal Travel Dashboard｜個人 Side Project｜2026.03 – Present**
 - 負責 Offline-first PWA 全端開發、AI Agent 工作流設計、多模型 API 整合與文件解析。
 
 ---

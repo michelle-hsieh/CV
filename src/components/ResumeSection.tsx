@@ -2,7 +2,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { ResumeSection as ResumeSectionType } from '../lib/parseResume';
 import { parseWorkExperience, parseEducation } from '../lib/parseTimeline';
+import { parseSkills, parseAchievements } from '../lib/parseCards';
 import Timeline from './Timeline';
+import SkillsGrid from './SkillsGrid';
+import AchievementCards from './AchievementCards';
 import FadeIn from './FadeIn';
 
 /**
@@ -20,10 +23,15 @@ export default function ResumeSection({
   const isWorkExperience = heading.includes('work') || heading.includes('experience');
   const isEducation = heading.includes('education');
   const isSummary = heading.includes('summary');
+  const isSkills = heading.includes('skill');
+  const isAchievements = heading.includes('achievement');
 
   let timelineItems = null;
   if (isWorkExperience) timelineItems = parseWorkExperience(section.body);
   else if (isEducation) timelineItems = parseEducation(section.body);
+
+  const skillCards = isSkills ? parseSkills(section.body) : null;
+  const achievementCards = isAchievements ? parseAchievements(section.body) : null;
 
   return (
     <FadeIn delay={delay}>
@@ -34,6 +42,10 @@ export default function ResumeSection({
 
         {timelineItems && timelineItems.length > 0 ? (
           <Timeline items={timelineItems} />
+        ) : skillCards && skillCards.length > 0 ? (
+          <SkillsGrid cards={skillCards} />
+        ) : achievementCards && achievementCards.length > 0 ? (
+          <AchievementCards cards={achievementCards} />
         ) : (
           <div className={`prose-custom ${isSummary ? 'summary-body' : ''}`}>
             <ReactMarkdown
