@@ -1,0 +1,154 @@
+/* ============================================================
+   CSS Paged Media — 分頁不截斷專用樣式
+   使用瀏覽器原生列印 (window.print) 產出高品質可選取文字 PDF
+   ============================================================ */
+
+@media print {
+  /* --- 頁面設定 --- */
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+
+  /* --- 基本重置：列印時全白底、黑字、無陰影 --- */
+  html,
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 10pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* --- 隱藏非列印元素 --- */
+  .sidebar,
+  .no-print,
+  button,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  /* --- 主內容區域：列印時佔滿整頁 --- */
+  .resume-main {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100%;
+  }
+
+  /* --- 列印版的 header（姓名 + 聯絡資訊） --- */
+  .print-header {
+    display: block !important;
+    margin-bottom: 10mm;
+    padding-bottom: 6mm;
+    border-bottom: 1pt solid #1a1a1a;
+  }
+
+  .print-header h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 0 0 2mm 0;
+  }
+
+  .print-header p {
+    margin: 1mm 0;
+    font-size: 10pt;
+  }
+
+  /* ============================================================
+     ★ 核心規則：分頁不截斷 ★
+     ============================================================ */
+
+  /* 每個 section（工作經歷、教育背景等）內部不分頁 */
+  section,
+  .resume-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 6mm;
+  }
+
+  /* 標題不孤立在頁尾 —— 標題後至少 3 行內容 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+    break-inside: avoid;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 14pt;
+    margin-bottom: 4mm;
+  }
+
+  h3 {
+    font-size: 11pt;
+    margin-top: 3mm;
+    margin-bottom: 2mm;
+  }
+
+  /* 段落與列表不被截斷 */
+  li,
+  p {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    orphans: 2;
+    widows: 2;
+    margin: 0 0 2mm 0;
+  }
+
+  ul,
+  ol {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 3mm;
+  }
+
+  li + li {
+    margin-top: 1mm;
+  }
+
+  /* 連結：列印時以黑色顯示且不帶底線，保持閱讀清爽 */
+  a {
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+  }
+
+  /* 連結不要顯示 URL */
+  a[href]::after {
+    content: '' !important;
+  }
+
+  /* 代碼塊 */
+  code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+    border: none;
+  }
+
+  /* 邊框線 */
+  hr {
+    border: none;
+    border-top: 1pt solid #999;
+    margin: 4mm 0;
+  }
+}
+
+/* 螢幕顯示時隱藏 print-header */
+@media screen {
+  .print-header {
+    display: none;
+  }
+}

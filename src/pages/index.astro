@@ -1,0 +1,40 @@
+---
+import { promises as fs } from 'fs';
+import path from 'path';
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar';
+import DownloadButton from '../components/DownloadButton';
+import ResumeSection from '../components/ResumeSection';
+import { parseResume } from '../lib/parseResume';
+import '../styles/print.css';
+
+// 讀取 content/resume.md
+const resumePath = path.join(process.cwd(), 'content', 'resume.md');
+const raw = await fs.readFile(resumePath, 'utf-8');
+const { meta, sections } = parseResume(raw);
+---
+
+<Layout title={`${meta.name} — ${meta.title}`}>
+  <DownloadButton client:load />
+
+  <div class="min-h-screen lg:flex bg-white">
+    <Sidebar client:load meta={meta} />
+
+    <main class="resume-main flex-1 lg:ml-96 px-8 py-12 lg:px-20 lg:py-16 max-w-5xl">
+      <!-- 螢幕版不顯示（已在側邊欄），列印版才顯示的頁首 -->
+      <header class="print-header">
+        <h1 class="font-serif font-bold">{meta.name}</h1>
+        <p class="text-gray-700">{meta.title}</p>
+        <p class="text-gray-600">
+          {meta.email} · GitHub · {meta.location}
+        </p>
+      </header>
+
+      {sections.map((section, i) => <ResumeSection client:load section={section} delay={i * 120} />)}
+
+      <footer class="mt-16 pt-8 border-t border-gray-200 text-sm text-gray-500 print:hidden">
+        © {new Date().getFullYear()} {meta.name}. Built with Astro & Tailwind CSS.
+      </footer>
+    </main>
+  </div>
+</Layout>
