@@ -30,7 +30,7 @@
 **晶心科技股份有限公司｜高級工程師｜2023.09 – 2026.05**
 - 負責嵌入式開發環境的診斷視圖與工具平台功能開發，包括效能分析、暫存器視覺化與多核心除錯。
 - 主導 CI/CD 自動化測試架構重構（QF-Test + Jenkins），降低 pipeline 阻塞與人工重跑成本。
-- 代表成果：AndeStar V5 System Privileged Architecture and CSR Specification (SPA) 規格解析自動化工具（5 天 → 數分鐘）、AutoOpTune Web 視圖、Multi-Project / Multi-core Debug 架構。
+- 代表成果：AndeStar V5 System Privileged Architecture and CSR Specification (SPA) 規格文件解析自動化工具（5 天 → 數分鐘）、AutoOpTune Web 視圖、Multi-Project / Multi-core Debug 架構。
 
 **新光人壽保險股份有限公司｜實習生（資訊專業人員）｜2021.02 – 2021.06**
 - 開發企業內部需求連署平台，協助集中彙整員工需求並提升需求管理效率。

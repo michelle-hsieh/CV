@@ -4,8 +4,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        // Wix 商業履歷模板風格：Libre Baskerville 標題 + Lato 內文
+        serif: ['"Libre Baskerville"', '"Noto Serif TC"', 'Georgia', 'serif'],
+        sans: ['"Lato"', '"Noto Sans TC"', '-apple-system', 'sans-serif'],
+        display: ['"Libre Baskerville"', '"Noto Serif TC"', 'Georgia', 'serif'],
+      },
+      letterSpacing: {
+        'widest-xl': '0.3em',
       },
       colors: {
         ink: '#1a1a1a',

@@ -19,6 +19,7 @@ export default function ResumeSection({
   const heading = section.heading.toLowerCase();
   const isWorkExperience = heading.includes('work') || heading.includes('experience');
   const isEducation = heading.includes('education');
+  const isSummary = heading.includes('summary');
 
   let timelineItems = null;
   if (isWorkExperience) timelineItems = parseWorkExperience(section.body);
@@ -27,42 +28,54 @@ export default function ResumeSection({
   return (
     <FadeIn delay={delay}>
       <section className="resume-section mb-14 print:mb-6 break-inside-avoid page-break-inside-avoid">
-        <h2 className="font-serif text-4xl font-bold mb-8 pb-3 border-b-2 border-gray-300 print:text-2xl print:mb-4 print:pb-2 text-ink">
+        <h2 className="font-serif text-3xl font-bold text-ink mb-8 pb-3 border-b border-gray-300 uppercase tracking-[0.15em] print:text-xl print:mb-4 print:pb-2 print:tracking-[0.1em]">
           {section.heading}
         </h2>
 
         {timelineItems && timelineItems.length > 0 ? (
           <Timeline items={timelineItems} />
         ) : (
-          <div className="prose-custom space-y-4">
+          <div className={`prose-custom ${isSummary ? 'summary-body' : ''}`}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
+                // Achievement 條目標題：Libre Baskerville serif，優雅大字
                 h3: ({ children }) => (
-                  <h3 className="font-serif text-2xl font-semibold mt-7 mb-3 text-ink print:text-lg print:mt-3">
+                  <h3 className="font-serif text-2xl font-bold text-ink mt-10 mb-4 leading-snug first:mt-0 print:text-lg print:mt-4 print:mb-2">
                     {children}
                   </h3>
                 ),
+                // Summary 段落：serif italic 大字（Wix 經典介紹段落風格）
+                // 其他段落：Lato sans-serif，寬鬆行距
                 p: ({ children }) => (
-                  <p className="mb-4 leading-relaxed text-gray-800 text-base print:mb-2 print:text-sm">
+                  <p
+                    className={
+                      isSummary
+                        ? 'font-serif text-lg italic leading-[1.9] text-gray-700 mb-5 print:text-sm print:leading-relaxed'
+                        : 'font-sans text-[15px] leading-[1.8] text-gray-700 mb-4 print:text-sm print:leading-relaxed print:mb-2'
+                    }
+                  >
                     {children}
                   </p>
                 ),
+                // 列表：Lato，適度間距，灰色 bullets
                 ul: ({ children }) => (
-                  <ul className="list-disc list-outside ml-6 mb-5 space-y-2.5 text-gray-800 print:mb-2 print:space-y-0.5">
+                  <ul className="list-disc marker:text-gray-400 list-outside ml-5 mb-6 space-y-2 print:mb-2 print:space-y-1">
                     {children}
                   </ul>
                 ),
                 li: ({ children }) => (
-                  <li className="text-gray-800 leading-relaxed text-base print:text-sm">
+                  <li className="font-sans text-[15px] leading-[1.75] text-gray-700 pl-1 print:text-[10pt] print:leading-normal">
                     {children}
                   </li>
                 ),
+                // 粗體：保留稍微強調（Lato Bold）
                 strong: ({ children }) => (
-                  <strong className="font-semibold text-ink">{children}</strong>
+                  <strong className="font-sans font-bold text-ink">{children}</strong>
                 ),
+                // inline code：移除背景色，改用細微的底色 + serif 風格
                 code: ({ children }) => (
-                  <code className="px-2 py-1 bg-gray-100 rounded text-sm font-mono text-gray-700">
+                  <code className="px-1.5 py-0.5 bg-gray-50 border border-gray-200 rounded text-[13px] font-mono text-gray-700">
                     {children}
                   </code>
                 ),
@@ -71,7 +84,7 @@ export default function ResumeSection({
                     href={href}
                     target="_blank"
                     rel="noopener"
-                    className="text-blue-600 hover:underline print:text-ink print:no-underline"
+                    className="text-ink underline decoration-gray-300 underline-offset-4 hover:decoration-ink transition print:no-underline"
                   >
                     {children}
                   </a>

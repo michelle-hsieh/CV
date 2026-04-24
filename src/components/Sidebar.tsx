@@ -20,15 +20,13 @@ export default function Sidebar({ meta }: { meta: ResumeMeta }) {
         {meta.avatar}
       </div>
 
-      {/* 姓名 - 大字體、serif 字族 */}
-      <h1 className="font-serif text-5xl font-bold text-ink leading-tight text-center lg:text-left mb-3">
-        {meta.name.split(' ')[0]}
-        <br />
-        {meta.name.split(' ')[1]}
+      {/* 姓名 - Libre Baskerville、優雅 serif */}
+      <h1 className="font-serif text-5xl font-bold text-ink leading-[1.1] text-center lg:text-left mb-4">
+        {meta.name}
       </h1>
 
-      {/* 職位 - 灰色、小一些 */}
-      <p className="text-lg text-muted tracking-wide mb-8 text-center lg:text-left">
+      {/* 職位 - Lato、全大寫、字間距 */}
+      <p className="text-xs text-muted uppercase tracking-[0.3em] font-medium mb-8 text-center lg:text-left">
         {meta.title}
       </p>
 

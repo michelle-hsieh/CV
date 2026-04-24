@@ -26,19 +26,19 @@ export default function Timeline({ items }: TimelineProps) {
 
             {/* 內容卡片 */}
             <div className="pb-2">
-              {/* 時間 */}
-              <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-1 print:text-[9pt]">
+              {/* 時間 - Lato 全大寫、字間距 */}
+              <div className="font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-muted mb-2 print:text-[9pt] print:tracking-[0.15em]">
                 {item.period}
               </div>
 
-              {/* 標題 */}
-              <h3 className="font-serif text-xl font-semibold text-ink mb-1 print:text-base">
+              {/* 標題 - Libre Baskerville 優雅 serif */}
+              <h3 className="font-serif text-xl font-bold text-ink mb-1 leading-snug print:text-base">
                 {item.title}
               </h3>
 
-              {/* 副標題 */}
+              {/* 副標題 - italic serif，Wix 經典風格 */}
               {item.subtitle && (
-                <p className="text-sm text-muted mb-2 italic print:text-[9pt]">
+                <p className="font-serif text-sm italic text-muted mb-3 print:text-[9pt]">
                   {item.subtitle}
                 </p>
               )}
