@@ -3,7 +3,6 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import Layout from '../layouts/Layout.astro';
 import Sidebar from '../components/Sidebar';
-import DownloadButton from '../components/DownloadButton';
 import ResumeSection from '../components/ResumeSection';
 import { parseResume } from '../lib/parseResume';
 import '../styles/print.css';
@@ -15,8 +14,6 @@ const { meta, sections } = parseResume(raw);
 ---
 
 <Layout title={`${meta.name} — ${meta.title}`}>
-  <DownloadButton client:load />
-
   <div class="min-h-screen lg:flex bg-white">
     <Sidebar client:load meta={meta} />
 
