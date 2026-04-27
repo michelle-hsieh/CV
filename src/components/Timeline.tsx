@@ -21,14 +21,27 @@ export default function Timeline({ items }: TimelineProps) {
               className="relative timeline-item break-inside-avoid page-break-inside-avoid"
             >
               {/* 時間軸圓點 */}
-              <div
-                className="absolute -left-[26px] top-2 w-4 h-4 rounded-full bg-ink border-4 border-white shadow-md print:shadow-none print:w-3 print:h-3 print:-left-[22px]"
-              />
+              <div className="absolute -left-[26px] top-2 print:w-3 print:h-3 print:-left-[22px]">
+                <div className="w-4 h-4 rounded-full bg-ink border-[3px] border-white shadow-md ring-2 ring-gray-300 print:shadow-none print:ring-0" />
+              </div>
 
               {/* 內容 */}
               <div className="pb-2">
-                <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className="font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-muted print:text-[9pt] print:tracking-[0.15em]">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                  <span className="
+                    timeline-period-badge
+                    inline-flex items-center
+                    font-sans text-[12px] font-extrabold uppercase tracking-[0.2em]
+                    text-ink/80
+                    bg-gradient-to-r from-gray-100 to-gray-50
+                    border border-gray-300
+                    px-3 py-1 rounded-full
+                    shadow-sm
+                    print:text-[9pt] print:tracking-[0.15em] print:shadow-none
+                  ">
+                    <svg className="w-3.5 h-3.5 mr-1.5 text-ink/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                     {item.period}
                   </span>
                 </div>

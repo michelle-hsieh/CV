@@ -239,14 +239,38 @@
     display: block !important;
   }
 
+  /* ============================================================
+     ★ Timeline 時間 badge：列印時保留 pill 樣式 ★
+     ============================================================ */
+  .timeline-period-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    background-color: #f3f3f3 !important;
+    border: 0.5pt solid #bbb !important;
+    border-radius: 9999px !important;
+    padding: 1mm 3mm !important;
+    font-size: 8.5pt !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: #333 !important;
+  }
+
+  .timeline-period-badge svg {
+    width: 3mm !important;
+    height: 3mm !important;
+    margin-right: 1mm !important;
+    color: #666 !important;
+  }
+
   /* Skills 卡片 */
   .resume-section [class*="bg-gray-50"] {
     background-color: #f9f9f9 !important;
     border: 0.5pt solid #ddd !important;
   }
 
-  /* Skills 標籤 pill */
-  .resume-section [class*="rounded-full"][class*="border-gray-"] {
+  /* Skills 標籤 pill（排除 timeline-period-badge） */
+  .resume-section [class*="rounded-full"][class*="border-gray-"]:not(.timeline-period-badge) {
     background-color: transparent !important;
     border: 0.5pt solid #999 !important;
   }

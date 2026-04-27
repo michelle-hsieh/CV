@@ -29,6 +29,7 @@
 - 使用 Oracle 資料庫、Java Spring Boot 後端、Git 與 TFS 進行開發與版本控制。
 
 **Personal Travel Dashboard｜個人 Side Project｜2026.03 – Present**
+- **Project Link：** [Personal Travel Dashboard | 個人旅遊儀表板](https://michelle-hsieh.github.io/travel-dashboard/)
 - 負責 Offline-first PWA 全端開發、AI Agent 工作流設計、多模型 API 整合與文件解析（[Key Achievements #4](#achievement-4)）
 
 ---
