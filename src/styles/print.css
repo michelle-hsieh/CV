@@ -3,39 +3,52 @@
    使用瀏覽器原生列印 (window.print) 產出高品質可選取文字 PDF
    ============================================================ */
 
+/* ============================================================
+   列印用佈局：@media print 與 body.is-printing 共用規則
+   body.is-printing 讓 ?print=1 分頁在螢幕上也看到列印版面
+   ============================================================ */
 @media print {
-  /* --- 頁面設定 --- */
   @page {
     size: A4;
-    margin: 16mm 14mm;
+    margin: 14mm 12mm;
+  }
+}
+
+@media print,
+(print) {
+  /* 保留背景色（Timeline 線、圓點、Skills 標籤色、STAR 彩色標籤） */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+@media print {
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 
-  /* --- 基本重置：列印時全白底、黑字、無陰影 --- */
   html,
   body {
     background: #ffffff !important;
-    color: #1a1a1a !important;
     font-size: 10pt;
     line-height: 1.5;
     margin: 0;
     padding: 0;
   }
 
-  * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  /* --- 隱藏非列印元素 --- */
+  /* 隱藏非列印元素 */
   .sidebar,
   .no-print,
   button,
-  nav,
   footer {
     display: none !important;
   }
 
-  /* --- 主內容區域：列印時佔滿整頁 --- */
+  /* 主內容：@page 已提供邊距，這裡不再加 padding，避免第一頁重複 */
   .resume-main {
     margin: 0 !important;
     padding: 0 !important;
@@ -43,23 +56,72 @@
     width: 100%;
   }
 
-  /* --- 列印版的 header（姓名 + 聯絡資訊） --- */
+  /* ============================================================
+     ★ 列印版 Header 排版（置中、優雅） ★
+     ============================================================ */
   .print-header {
-    display: block !important;
-    margin-bottom: 10mm;
-    padding-bottom: 6mm;
-    border-bottom: 1pt solid #1a1a1a;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: left;
+    margin: 0 0 10mm 0;
+    padding: 0 0 6mm 0;
+    border: none;
+    border-bottom: 0.5pt solid #999;
+    gap: 8mm;
   }
 
-  .print-header h1 {
-    font-size: 18pt;
-    font-weight: bold;
+  .print-header-name {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .print-header-name h1 {
+    font-family: 'Libre Baskerville', 'Noto Serif TC', Georgia, serif;
+    font-size: 22pt;
+    font-weight: 700;
     margin: 0 0 2mm 0;
+    letter-spacing: 0.02em;
   }
 
-  .print-header p {
-    margin: 1mm 0;
-    font-size: 10pt;
+  .print-header-title {
+    font-family: 'Lato', 'Noto Sans TC', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #666;
+    margin-bottom: 4mm;
+  }
+
+  .print-header-contact {
+    font-family: 'Lato', 'Noto Sans TC', sans-serif;
+    font-size: 9pt;
+    color: #555;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8mm;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+
+  .print-header-contact li {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    line-height: 1.3;
+  }
+
+  .print-header-contact li svg {
+    width: 3.5mm;
+    height: 3.5mm;
+    flex-shrink: 0;
+    color: #1a1a1a;
   }
 
   /* ============================================================
@@ -119,9 +181,8 @@
     margin-top: 1mm;
   }
 
-  /* 連結：列印時以黑色顯示且不帶底線，保持閱讀清爽 */
+  /* 連結：僅去底線，保留原色 */
   a {
-    color: #1a1a1a !important;
     text-decoration: none !important;
   }
 
@@ -130,21 +191,56 @@
     content: '' !important;
   }
 
-  /* 代碼塊 */
-  code {
-    background: transparent;
-    color: #1a1a1a;
-    padding: 0;
-    border: none;
-  }
-
   /* 邊框線 */
   hr {
     border: none;
     border-top: 1pt solid #999;
     margin: 4mm 0;
   }
+
+  /* ============================================================
+     ★ 強制保留 Timeline 的線與圓點（否則印刷時消失） ★
+     ============================================================ */
+  .timeline-item::before,
+  [class*="timeline"] [class*="bg-ink"],
+  [class*="timeline"] [class*="bg-gray-"] {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Timeline 垂直線 */
+  .resume-section .relative > .absolute[class*="bg-gray-"] {
+    background-color: #999 !important;
+    display: block !important;
+  }
+
+  /* Timeline 圓點 */
+  .resume-section .relative > .space-y-8 > div > .absolute[class*="bg-ink"],
+  .resume-section .relative > div > div > .absolute[class*="rounded-full"] {
+    background-color: #1a1a1a !important;
+    border-color: #ffffff !important;
+    display: block !important;
+  }
+
+  /* Skills 卡片 */
+  .resume-section [class*="bg-gray-50"] {
+    background-color: #f9f9f9 !important;
+    border: 0.5pt solid #ddd !important;
+  }
+
+  /* Skills 標籤 pill */
+  .resume-section [class*="rounded-full"][class*="border-gray-"] {
+    background-color: transparent !important;
+    border: 0.5pt solid #999 !important;
+  }
+
+  /* Achievement 卡片：保留白底與細邊 */
+  article {
+    border: 0.5pt solid #ddd !important;
+    background-color: #ffffff !important;
+  }
 }
+
 
 /* 螢幕顯示時隱藏 print-header */
 @media screen {

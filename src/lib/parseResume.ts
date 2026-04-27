@@ -5,7 +5,7 @@ export interface ResumeMeta {
   title: string;
   email: string;
   github: string;
-  location: string;
+  phone: string;
   avatar: string;
 }
 
@@ -44,7 +44,7 @@ function extractNameAndTitle(content: string): { name: string; title: string } {
 function extractContact(content: string): {
   email: string;
   github: string;
-  location: string;
+  phone: string;
 } {
   const contactMatch = content.match(/##\s*Contact\s*\n([\s\S]*?)(?=\n##\s|\n---|\n$)/i);
   const block = contactMatch ? contactMatch[1] : content;
@@ -52,12 +52,15 @@ function extractContact(content: string): {
   // 允許 **Email：** 這種 markdown 粗體包圍的格式
   const emailMatch = block.match(/Email[：:\s*]*\**\s*([^\s\n*]+@[^\s\n*]+)/i);
   const githubMatch = block.match(/GitHub[：:\s*]*\**\s*(https?:\/\/[^\s\n*]+)/i);
-  const locationMatch = block.match(/Location[：:]\s*\**\s*([^\n*]+?)\s*\**\s*$/im);
+  // Phone（手機/電話）— 也支援舊的 Location 欄位作為 fallback
+  const phoneMatch =
+    block.match(/(?:Phone|Mobile|Tel|手機|電話)[：:]\s*\**\s*([^\n*]+?)\s*\**\s*$/im) ??
+    block.match(/Location[：:]\s*\**\s*([^\n*]+?)\s*\**\s*$/im);
 
   return {
     email: emailMatch?.[1]?.trim() ?? '',
     github: githubMatch?.[1]?.trim() ?? '',
-    location: stripBold(locationMatch?.[1] ?? ''),
+    phone: stripBold(phoneMatch?.[1] ?? ''),
   };
 }
 
@@ -73,7 +76,7 @@ export function parseResume(raw: string): ParsedResume {
     title: data.title ?? parsedTitle,
     email: data.email ?? contact.email,
     github: data.github ?? contact.github,
-    location: data.location ?? contact.location,
+    phone: data.phone ?? contact.phone,
     avatar: data.avatar ?? (parsedName ? parsedName.charAt(0) : '?'),
   };
 

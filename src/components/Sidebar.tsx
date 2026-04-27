@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import type { ResumeMeta } from '../lib/parseResume';
 
+// 把頭像照片放到 public/avatar.jpg 即可自動使用
+// 若檔案不存在，會 fallback 顯示姓名首字母的圓圈
+const AVATAR_SRC = '/avatar.jpg';
+
 export default function Sidebar({ meta }: { meta: ResumeMeta }) {
   const [mounted, setMounted] = useState(false);
+  const [avatarFailed, setAvatarFailed] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 50);
@@ -15,9 +20,18 @@ export default function Sidebar({ meta }: { meta: ResumeMeta }) {
         mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
       }`}
     >
-      {/* 頭像 */}
-      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center text-6xl font-serif font-bold text-white mb-8 shadow-sm">
-        {meta.avatar}
+      {/* 頭像：優先載入 public/avatar.jpg，失敗時 fallback 顯示姓名首字母 */}
+      <div className="w-36 h-44 rounded-md overflow-hidden bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center mb-8 shadow-sm">
+        {!avatarFailed ? (
+          <img
+            src={AVATAR_SRC}
+            alt={meta.name}
+            className="w-full h-full object-cover"
+            onError={() => setAvatarFailed(true)}
+          />
+        ) : (
+          <span className="text-6xl font-serif font-bold text-white">{meta.avatar}</span>
+        )}
       </div>
 
       {/* 姓名 - Libre Baskerville、優雅 serif */}
@@ -40,16 +54,15 @@ export default function Sidebar({ meta }: { meta: ResumeMeta }) {
           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 flex-shrink-0 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
           </svg>
-          <span className="break-all text-xs">{meta.email}</span>
+          <span className="break-all">{meta.email}</span>
         </div>
 
-        {/* Location - icon + 地址 */}
+        {/* Phone - icon + 手機號 */}
         <div className="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 flex-shrink-0 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
           </svg>
-          <span>{meta.location}</span>
+          <span>{meta.phone}</span>
         </div>
 
       </nav>
@@ -70,9 +83,75 @@ export default function Sidebar({ meta }: { meta: ResumeMeta }) {
           </svg>
         </a>
 
-        {/* 下載 PDF - 純 icon 按鈕 */}
+        {/* 下載 PDF - 隱藏 iframe 列印（about:blank 隱藏 URL + 清空 title，無額外視窗） */}
         <button
-          onClick={() => window.print()}
+          onClick={() => {
+            const main = document.querySelector('.resume-main');
+            if (!main) return;
+
+            // 複製目前頁面所有 <link> 與 <style>，讓 iframe 套用相同樣式
+            const styleTags = Array.from(
+              document.querySelectorAll('link[rel="stylesheet"], style')
+            )
+              .map((el) => el.outerHTML)
+              .join('\n');
+
+            // 建立完全隱藏的 iframe
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('aria-hidden', 'true');
+            Object.assign(iframe.style, {
+              position: 'fixed',
+              right: '0',
+              bottom: '0',
+              width: '0',
+              height: '0',
+              border: '0',
+              visibility: 'hidden',
+            });
+            document.body.appendChild(iframe);
+
+            const doc = iframe.contentDocument;
+            if (!doc) return;
+
+            doc.open();
+            doc.write(`<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8" />
+<title> </title>
+${styleTags}
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  @page { size: A4; margin: 14mm 12mm; }
+</style>
+</head>
+<body>${main.outerHTML}</body>
+</html>`);
+            doc.close();
+
+            const cleanup = () => {
+              if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            };
+
+            const doPrint = () => {
+              const win = iframe.contentWindow;
+              if (!win) return cleanup();
+              win.focus();
+              win.print();
+              win.addEventListener('afterprint', cleanup);
+              // fallback：5 秒後若仍未清理則強制移除 iframe
+              setTimeout(cleanup, 5000);
+            };
+
+            iframe.addEventListener('load', () => {
+              const win = iframe.contentWindow;
+              if (win?.document.fonts?.ready) {
+                win.document.fonts.ready.then(() => setTimeout(doPrint, 150));
+              } else {
+                setTimeout(doPrint, 500);
+              }
+            });
+          }}
           aria-label="下載 PDF"
           title="下載 PDF"
           className="inline-flex items-center hover:opacity-60 transition-opacity"

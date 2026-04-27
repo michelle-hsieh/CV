@@ -4,7 +4,7 @@
 
 - **Email：** michelleok168@gmail.com
 - **GitHub：** https://github.com/michelle-hsieh
-- **Location：** 新竹市東區
+- **Phone：** 0917-618-960
 
 ---
 
