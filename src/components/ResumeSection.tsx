@@ -7,6 +7,8 @@ import Timeline from './Timeline';
 import SkillsGrid from './SkillsGrid';
 import AchievementCards from './AchievementCards';
 import FadeIn from './FadeIn';
+import { getSectionId } from '../lib/slug';
+import AchievementLink from './AchievementLink';
 
 /**
  * 每個 section 被包裹在 <section> 元素中，
@@ -35,7 +37,10 @@ export default function ResumeSection({
 
   return (
     <FadeIn delay={delay}>
-      <section className="resume-section mb-14 print:mb-6 break-inside-avoid page-break-inside-avoid">
+      <section
+        id={getSectionId(section.heading)}
+        className="resume-section mb-14 print:mb-6 break-inside-avoid page-break-inside-avoid scroll-mt-8"
+      >
         <h2 className="font-serif text-3xl font-bold text-ink mb-8 pb-3 border-b border-gray-300 uppercase tracking-[0.15em] print:text-xl print:mb-4 print:pb-2 print:tracking-[0.1em]">
           {section.heading}
         </h2>
@@ -91,16 +96,23 @@ export default function ResumeSection({
                     {children}
                   </code>
                 ),
-                a: ({ href, children }) => (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener"
-                    className="text-ink underline decoration-gray-300 underline-offset-4 hover:decoration-ink transition print:no-underline"
-                  >
-                    {children}
-                  </a>
-                ),
+                a: ({ href, children }) => {
+                  const isAchievementLink = href?.startsWith('#achievement-');
+                  const isHashLink = href?.startsWith('#');
+                  if (isAchievementLink) {
+                    return <AchievementLink href={href}>{children}</AchievementLink>;
+                  }
+                  return (
+                    <a
+                      href={href}
+                      target={isHashLink ? undefined : '_blank'}
+                      rel={isHashLink ? undefined : 'noopener'}
+                      className="text-ink underline decoration-gray-300 underline-offset-4 hover:decoration-ink transition print:no-underline"
+                    >
+                      {children}
+                    </a>
+                  );
+                },
               }}
             >
               {section.body}

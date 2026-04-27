@@ -186,6 +186,23 @@
     text-decoration: none !important;
   }
 
+  /* Achievement modal 觸發按鈕：列印時退化成純文字 */
+  .achievement-link {
+    display: inline !important;
+    color: inherit !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+
+  .achievement-link-icon {
+    display: none !important;
+  }
+
   /* 連結不要顯示 URL */
   a[href]::after {
     content: '' !important;

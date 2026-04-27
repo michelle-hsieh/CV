@@ -16,28 +16,29 @@
 
 ---
 
-## Skills
-
-- `Languages`: Java, JavaScript/TypeScript, Python
-- `Frameworks & Libraries`: React, Vite, Eclipse RCP / CDT / DSF, JCEF, Firebase, Dexie, IndexedDB, jszip, pdfjs-dist
-- `Infrastructure & Tools`: Docker, Jenkins, Git, Linux, GDB, QF-Test
-- `AI Integration`: AI models, Function Calling, Prompt Engineering, AI Agent Workflow
-
----
-
 ## Experience
 
 **晶心科技股份有限公司｜高級工程師｜2023.09 – 2026.05**
 - 負責嵌入式開發環境的診斷視圖與工具平台功能開發，包括效能分析、暫存器視覺化與多核心除錯。
-- 主導 CI/CD 自動化測試架構重構（QF-Test + Jenkins），降低 pipeline 阻塞與人工重跑成本。
-- 代表成果：AndeStar V5 System Privileged Architecture and CSR Specification (SPA) 規格文件解析自動化工具（5 天 → 數分鐘）、AutoOpTune Web 視圖、Multi-Project / Multi-core Debug 架構。
+- 重構 GUI 自動化測試流程，解決 flaky test 與 pipeline 阻塞問題（[Key Achievements #1](#achievement-1)）
+- 開發 SPA 規格解析工具，將手工作業由 5 天縮短至數分鐘（[Key Achievements #3](#achievement-3)）
+- 完成 AutoOpTune Web View 與舊環境相容性處理，並推進 Multi-Project / Multi-core Debug 與視圖重構（[Key Achievements #2](#achievement-2)、[#5](#achievement-5)、[#6](#achievement-6)）
 
 **新光人壽保險股份有限公司｜實習生（資訊專業人員）｜2021.02 – 2021.06**
 - 開發企業內部需求連署平台，協助集中彙整員工需求並提升需求管理效率。
 - 使用 Oracle 資料庫、Java Spring Boot 後端、Git 與 TFS 進行開發與版本控制。
 
 **Personal Travel Dashboard｜個人 Side Project｜2026.03 – Present**
-- 負責 Offline-first PWA 全端開發、AI Agent 工作流設計、多模型 API 整合與文件解析。
+- 負責 Offline-first PWA 全端開發、AI Agent 工作流設計、多模型 API 整合與文件解析（[Key Achievements #4](#achievement-4)）
+
+---
+
+## Skills
+
+- `Languages`: Java, JavaScript/TypeScript, Python
+- `Frameworks & Libraries`: React, Vite, Eclipse RCP / CDT / DSF, JCEF, Firebase, Dexie, IndexedDB, jszip, pdfjs-dist
+- `Infrastructure & Tools`: Docker, Jenkins, Git, Linux, GDB, QF-Test
+- `AI Integration`: AI models, Function Calling, Prompt Engineering, AI Agent Workflow
 
 ---
 

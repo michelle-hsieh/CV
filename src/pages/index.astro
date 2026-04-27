@@ -6,12 +6,18 @@ import Sidebar from '../components/Sidebar';
 import ResumeSection from '../components/ResumeSection';
 import BackToTop from '../components/BackToTop';
 import { parseResume } from '../lib/parseResume';
+import { parseAchievements } from '../lib/parseCards';
+import AchievementModal from '../components/AchievementModal';
 import '../styles/print.css';
 
 // 讀取 content/resume.md
 const resumePath = path.join(process.cwd(), 'content', 'resume.md');
 const raw = await fs.readFile(resumePath, 'utf-8');
 const { meta, sections } = parseResume(raw);
+const achievementSection = sections.find((section) =>
+  section.heading.toLowerCase().includes('achievement')
+);
+const achievementCards = achievementSection ? parseAchievements(achievementSection.body) : [];
 ---
 
 <Layout title={`${meta.name} — ${meta.title}`}>
@@ -56,4 +62,5 @@ const { meta, sections } = parseResume(raw);
   </div>
 
   <BackToTop client:load />
+  <AchievementModal client:load cards={achievementCards} />
 </Layout>
