@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://michelle-hsieh.github.io',
-  base: '/',
+  base: '/CV/',
   integrations: [
     react(),
     tailwind({ applyBaseStyles: true }),

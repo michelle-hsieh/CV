@@ -3,7 +3,7 @@ import type { ResumeMeta } from '../lib/parseResume';
 
 // 把頭像照片放到 public/avatar.jpg 即可自動使用
 // 若檔案不存在，會 fallback 顯示姓名首字母的圓圈
-const AVATAR_SRC = '/avatar.jpg';
+const AVATAR_SRC = `${import.meta.env.BASE_URL}avatar.jpg`;
 
 export default function Sidebar({ meta }: { meta: ResumeMeta }) {
   const [mounted, setMounted] = useState(false);
