@@ -6,9 +6,9 @@
 
 我的工作重心一直是：從複雜問題找到根因，再判斷要修補還是改架構。
 
-例如在 AutoOpTune 視圖開發中，產品規格同時需要支援 CentOS 7.4 與 Ubuntu 20.04，但 JCEF 官方未提供能同時相容兩者的 binary——CentOS 7.4 的 GLIBC 2.17 過舊，直接降版本又會破壞 Ubuntu 20.04 的支援。最後透過 Docker 環境重建與手動編譯 JCEF（基於 CEF 126） binary，才讓功能得以在兩個環境內同時上線。
+例如在 AutoOpTune 視圖開發中，產品需同時支援 CentOS 7.4 與 Ubuntu 20.04，但 JCEF 官方沒有相容兩者的 binary；最後透過 Docker 重建編譯環境並手動編譯 JCEF，讓功能在兩個環境同時上線。
 
-在 GUI 自動化測試頻繁失敗時，我從 `component not found` 追到根因是 Daemon 模式下 RMI 延遲與 Swing render 的 timing mismatch，確認後改的是架構，而非修改腳本。
+在 GUI 自動化測試頻繁失敗時，我從 `component not found` 一路往下追，確認根因是測試框架與應用程式之間的執行時序不同步，最後選擇調整執行架構，而非反覆修補腳本。
 
 ## 技術選型原則
 
@@ -20,13 +20,11 @@
 
 **把重複性的人工轉換工作變成可執行的工具**，是貫穿工作的工程直覺。
 
-在工作上，我把 AndeStar V5 System Privileged Architecture and CSR Specification (SPA) 規格文件中定義的數百個暫存器與 bitfield，轉成 JSON 描述檔、GDB XML 暫存器描述與 C 語言標頭檔，將 5 天的手工作業縮短至腳本執行數分鐘。
-
-這套「從文件提取結構、產出機器可用格式」的思維，也延伸到 Travel Dashboard：我用 `pdfjs-dist`、`jszip` 解析 PDF 與 Office 文件底層內容，將非結構化旅遊資料自動轉成結構化 JSON 匯入系統。兩件事的本質相同，都是把「人看得懂但機器不懂」的資訊，變成程式可直接處理的結構。
+在工作上，我把 AndeStar V5 System Privileged Architecture and CSR Specification (SPA) 規格文件中定義的數百個暫存器與 bitfield，轉成 JSON 描述檔、GDB XML 暫存器描述與 C 語言標頭檔，將 5 天的手工作業縮短至腳本執行數分鐘。後續版本更新只要重跑腳本即可產出，大幅降低維護成本。
 
 ## AI 協作方式
 
-近期把 AI 納入開發體系，用來協助需求拆解、框架探索、log 歸納與重構草案。在 Travel Dashboard 中，我進一步把多模型 API 與 Function Calling 整合成可執行的 AI Agent 工作流。對我來說，AI 的價值是把時間留給架構決策與根因分析，而不是取代工程判斷。
+近期把 AI 納入開發體系，用來協助需求拆解、框架探索、log 歸納與重構草案。在個人 Side Project 中，我進一步把多模型 API 與 Function Calling 整合成可執行的 AI Agent 工作流；同時也把 AI 解析整合進匯入流程，使用者上傳 PDF、Excel、Word 等行程文件後，由 AI 擷取結構化欄位匯入系統，把過去要各別寫 parser 才能處理的格式多樣性問題交給模型負責。對我來說，AI 的價值在於把時間從機械性的探索與整理中釋放出來，留給架構決策與根因分析。
 
 ## 未來方向
 
