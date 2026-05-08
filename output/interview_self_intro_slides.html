@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>謝秀玟｜面試自我介紹</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f3ea;
+      --paper-strong: #fffaf0;
+      --ink: #18231f;
+      --muted: #66716b;
+      --green: #1f4d3a;
+      --green-soft: #d9e5dd;
+      --copper: #b76f2a;
+      --gold: #d9ad52;
+      --blue: #315b72;
+      --line: rgba(24, 35, 31, 0.14);
+      --shadow: 0 24px 70px rgba(17, 31, 25, 0.18);
+      --slide-w: min(1180px, calc(100vw - 44px));
+      --slide-h: min(664px, calc((100vw - 44px) * 0.5625));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(31, 77, 58, 0.11), transparent 42%),
+        linear-gradient(315deg, rgba(183, 111, 42, 0.12), transparent 38%),
+        var(--paper);
+      font-family: "Noto Sans TC", "Microsoft JhengHei UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      overflow: hidden;
+    }
+
+    .deck {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .slide {
+      display: none;
+      position: relative;
+      width: var(--slide-w);
+      height: var(--slide-h);
+      min-height: 520px;
+      overflow: hidden;
+      background: var(--paper-strong);
+      border: 1px solid rgba(24, 35, 31, 0.12);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .slide.active {
+      display: block;
+      animation: enter 360ms ease-out both;
+    }
+
+    .slide.center-only .content {
+      grid-template-rows: 1fr auto;
+    }
+
+    .slide.center-only .body {
+      display: grid;
+      place-items: center;
+    }
+
+    .slide.center-only h2 {
+      max-width: none;
+      font-size: clamp(68px, 9vw, 124px);
+      text-align: center;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(31, 77, 58, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(31, 77, 58, 0.05) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: 0.42;
+      z-index: -2;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      background: linear-gradient(180deg, var(--green), var(--copper));
+      z-index: -1;
+    }
+
+    .content {
+      height: 100%;
+      padding: 58px 72px 54px 86px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 26px;
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--copper);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      letter-spacing: 0;
+      line-height: 1.12;
+    }
+
+    h1 {
+      max-width: 870px;
+      font-size: clamp(52px, 7vw, 86px);
+      font-weight: 900;
+    }
+
+    h2 {
+      max-width: 900px;
+      font-size: clamp(34px, 4vw, 54px);
+      font-weight: 900;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .body {
+      align-self: center;
+    }
+
+    .lead {
+      max-width: 920px;
+      margin: 0;
+      color: #26352f;
+      font-size: clamp(25px, 3vw, 36px);
+      line-height: 1.5;
+      font-weight: 750;
+    }
+
+    .points {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .points li {
+      position: relative;
+      padding-left: 34px;
+      color: #26352f;
+      font-size: clamp(22px, 2.5vw, 31px);
+      line-height: 1.46;
+      font-weight: 700;
+    }
+
+    .points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 14px;
+      height: 14px;
+      background: var(--copper);
+      transform: rotate(45deg);
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .panel {
+      padding: 24px 26px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.56);
+      border-radius: 8px;
+    }
+
+    .panel h3 {
+      margin: 0 0 14px;
+      color: var(--green);
+      font-size: clamp(20px, 2.1vw, 28px);
+      line-height: 1.25;
+    }
+
+    .panel p {
+      margin: 0;
+      color: #2a3933;
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--copper);
+      font-size: clamp(16px, 1.55vw, 21px);
+      font-weight: 900;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(183, 111, 42, 0.45);
+    }
+
+    .project-link:hover,
+    .project-link:focus-visible {
+      color: var(--green);
+      border-bottom-color: var(--green);
+      outline: none;
+    }
+
+    .metric {
+      display: inline-grid;
+      grid-template-columns: auto auto auto;
+      gap: 22px;
+      align-items: baseline;
+      margin-bottom: 20px;
+      color: var(--green);
+      font-family: "Noto Sans TC", "Microsoft JhengHei UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      font-size: clamp(48px, 5.8vw, 78px);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--copper);
+      font-size: 0.58em;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .tag {
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 18px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: end;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .talk {
+      max-width: 850px;
+      padding-top: 16px;
+      border-top: 2px solid rgba(183, 111, 42, 0.35);
+      color: #705632;
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .progress {
+      width: 180px;
+      height: 6px;
+      overflow: hidden;
+      background: rgba(31, 77, 58, 0.15);
+      border-radius: 999px;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: var(--progress);
+      background: linear-gradient(90deg, var(--green), var(--copper));
+    }
+
+    .controls {
+      position: fixed;
+      right: 24px;
+      bottom: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 250, 240, 0.86);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(17, 31, 25, 0.14);
+      backdrop-filter: blur(10px);
+    }
+
+    button {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 0.35;
+    }
+
+    .counter {
+      min-width: 58px;
+      text-align: center;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        overflow: auto;
+      }
+
+      .deck {
+        align-items: start;
+        padding: 14px;
+      }
+
+      .slide {
+        width: 100%;
+        height: auto;
+        min-height: calc(100vh - 28px);
+      }
+
+      .content {
+        padding: 42px 26px 42px 40px;
+        gap: 22px;
+      }
+
+      .columns {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        right: 14px;
+        bottom: 12px;
+      }
+    }
+
+    @media print {
+      body {
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        display: block;
+        padding: 0;
+      }
+
+      .slide,
+      .slide.active {
+        display: block;
+        width: 100vw;
+        height: 56.25vw;
+        min-height: 0;
+        margin: 0;
+        page-break-after: always;
+        box-shadow: none;
+        border: 0;
+      }
+
+      .controls {
+        display: none;
+      }
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .icon-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.56);
+      border-radius: 8px;
+    }
+
+    .icon-card .icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .outline-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: outline;
+    }
+
+    .outline-list li {
+      counter-increment: outline;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      color: #26352f;
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .outline-list li::before {
+      content: counter(outline, decimal-leading-zero);
+      color: var(--copper);
+      font-size: 0.75em;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .icon-card h3 {
+      margin: 0 0 6px;
+      color: var(--green);
+      font-size: clamp(18px, 1.9vw, 24px);
+      line-height: 1.25;
+    }
+
+    .icon-card p {
+      margin: 0;
+      color: #2a3933;
+      font-size: clamp(15px, 1.5vw, 19px);
+      line-height: 1.45;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide active" data-title="封面">
+      <div class="content">
+        <header>
+          <h1>謝秀玟</h1>
+          <p class="subtitle">Software Engineer</p>
+        </header>
+        <div class="body">
+          <div class="tags">
+            <span class="tag">Eclipse IDE</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">Root Cause Analysis</span>
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 12%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide" data-title="大綱">
+      <div class="content">
+        <header>
+          <p class="kicker">Outline</p>
+          <h2>今天會聊什麼</h2>
+        </header>
+        <div class="body">
+          <ol class="outline-list">
+            <li>核心經驗：RISC-V IDE 工具整合</li>
+            <li>功能開發與視圖重構</li>
+            <li>GUI 自動化測試重構</li>
+            <li>規格文件轉換工具</li>
+            <li>近期方向：AI Agent 與全端 PWA</li>
+          </ol>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 25%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide" data-title="核心經驗">
+      <div class="content">
+        <header>
+          <p class="kicker">01 / Core Experience</p>
+          <h2>RISC-V IDE 工具整合</h2>
+        </header>
+        <div class="body columns">
+          <article class="panel">
+            <h3>我負責的事</h3>
+            <p>把不同團隊開發的 RISC-V 晶片工具整合到 Eclipse IDE，讓嵌入式工程師可以直接檢視暫存器、做多核心除錯與效能分析。</p>
+          </article>
+          <article class="panel">
+            <h3>我處理的複雜度</h3>
+            <p>除了功能開發，也處理 Eclipse CDT、GDB、舊版 Linux 相容性與產品交付限制。</p>
+          </article>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 37%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide" data-title="功能開發">
+      <div class="content">
+        <header>
+          <p class="kicker">02 / Achievement</p>
+          <h2>功能開發與視圖重構</h2>
+        </header>
+        <div class="body">
+          <div class="icon-grid">
+            <div class="icon-card">
+              <svg class="icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Scatter plot: axes + dots -->
+                <line x1="6" y1="30" x2="6" y2="4" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round"/>
+                <line x1="6" y1="30" x2="32" y2="30" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="22" r="2.5" fill="#b76f2a"/>
+                <circle cx="17" cy="14" r="2.5" fill="#1f4d3a"/>
+                <circle cx="22" cy="18" r="2.5" fill="#b76f2a"/>
+                <circle cx="27" cy="9" r="2.5" fill="#1f4d3a"/>
+                <circle cx="14" cy="10" r="2.5" fill="#b76f2a" opacity="0.6"/>
+                <circle cx="24" cy="24" r="2.5" fill="#1f4d3a" opacity="0.6"/>
+              </svg>
+              <div>
+                <h3>AutoOpTune</h3>
+                <p>Web View 自動調優分析，攻克 CentOS 7.4 相容性</p>
+              </div>
+            </div>
+            <div class="icon-card">
+              <svg class="icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Table grid -->
+                <rect x="4" y="4" width="28" height="28" rx="3" stroke="#1f4d3a" stroke-width="2" fill="none"/>
+                <line x1="4" y1="12" x2="32" y2="12" stroke="#1f4d3a" stroke-width="1.5"/>
+                <line x1="4" y1="20" x2="32" y2="20" stroke="#1f4d3a" stroke-width="1.5"/>
+                <line x1="4" y1="28" x2="32" y2="28" stroke="#1f4d3a" stroke-width="1.5"/>
+                <line x1="14" y1="4" x2="14" y2="32" stroke="#1f4d3a" stroke-width="1.5"/>
+                <line x1="24" y1="4" x2="24" y2="32" stroke="#1f4d3a" stroke-width="1.5"/>
+                <rect x="4" y="4" width="28" height="8" rx="3" fill="#1f4d3a" opacity="0.15"/>
+              </svg>
+              <div>
+                <h3>Vector Register</h3>
+                <p>依資料型別重設計視圖，提升可讀性</p>
+              </div>
+            </div>
+            <div class="icon-card">
+              <svg class="icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- VA → PA mapping -->
+                <rect x="2" y="10" width="12" height="16" rx="2" stroke="#1f4d3a" stroke-width="1.5" fill="#d9e5dd"/>
+                <text x="8" y="20.5" text-anchor="middle" font-size="7" font-weight="800" fill="#1f4d3a">VA</text>
+                <rect x="22" y="10" width="12" height="16" rx="2" stroke="#b76f2a" stroke-width="1.5" fill="#faebd7"/>
+                <text x="28" y="20.5" text-anchor="middle" font-size="7" font-weight="800" fill="#b76f2a">PA</text>
+                <line x1="14.5" y1="18" x2="21" y2="18" stroke="#1f4d3a" stroke-width="1.5" stroke-linecap="round"/>
+                <polyline points="19,15 22,18 19,21" stroke="#1f4d3a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <h3>MMU View</h3>
+                <p>JSON 外部化配置，Web View 重構解耦</p>
+              </div>
+            </div>
+            <div class="icon-card">
+              <svg class="icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Topology: TAP → Target → Core -->
+                <rect x="11" y="2" width="14" height="8" rx="2" fill="#1f4d3a"/>
+                <text x="18" y="7.5" text-anchor="middle" font-size="5" font-weight="700" fill="white">TAP</text>
+                <line x1="14" y1="10" x2="10" y2="15" stroke="#1f4d3a" stroke-width="1.5"/>
+                <line x1="22" y1="10" x2="26" y2="15" stroke="#1f4d3a" stroke-width="1.5"/>
+                <rect x="3" y="15" width="14" height="7" rx="2" fill="#b76f2a" opacity="0.85"/>
+                <text x="10" y="20" text-anchor="middle" font-size="4.5" font-weight="700" fill="white">Target</text>
+                <rect x="19" y="15" width="14" height="7" rx="2" fill="#b76f2a" opacity="0.85"/>
+                <text x="26" y="20" text-anchor="middle" font-size="4.5" font-weight="700" fill="white">Target</text>
+                <line x1="7" y1="22" x2="7" y2="26" stroke="#b76f2a" stroke-width="1.5"/>
+                <line x1="13" y1="22" x2="13" y2="26" stroke="#b76f2a" stroke-width="1.5"/>
+                <line x1="23" y1="22" x2="23" y2="26" stroke="#b76f2a" stroke-width="1.5"/>
+                <line x1="29" y1="22" x2="29" y2="26" stroke="#b76f2a" stroke-width="1.5"/>
+                <rect x="3" y="26" width="8" height="7" rx="2" fill="#d9e5dd" stroke="#1f4d3a" stroke-width="1"/>
+                <text x="7" y="31" text-anchor="middle" font-size="4.5" font-weight="700" fill="#1f4d3a">C0</text>
+                <rect x="13" y="26" width="8" height="7" rx="2" fill="#d9e5dd" stroke="#1f4d3a" stroke-width="1"/>
+                <text x="17" y="31" text-anchor="middle" font-size="4.5" font-weight="700" fill="#1f4d3a">C1</text>
+                <rect x="19" y="26" width="8" height="7" rx="2" fill="#d9e5dd" stroke="#1f4d3a" stroke-width="1"/>
+                <text x="23" y="31" text-anchor="middle" font-size="4.5" font-weight="700" fill="#1f4d3a">C0</text>
+                <rect x="25" y="26" width="8" height="7" rx="2" fill="#d9e5dd" stroke="#1f4d3a" stroke-width="1"/>
+                <text x="29" y="31" text-anchor="middle" font-size="4.5" font-weight="700" fill="#1f4d3a">C1</text>
+              </svg>
+              <div>
+                <h3>Multi-Project</h3>
+                <p>多子專案建立、建置與 multi-core debug</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 50%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide" data-title="成果一">
+      <div class="content">
+        <header>
+          <p class="kicker">03 / Achievement</p>
+          <h2>GUI 自動化測試重構</h2>
+        </header>
+        <div class="body">
+          <ul class="points">
+            <li>問題：QF-Test GUI 測試頻繁出現 component not found，造成人工重跑。</li>
+            <li>處理：比對 runlog、錯誤訊息與執行時序，追到 Daemon 模式下 Java Swing/AWT 渲染時序不同步。</li>
+            <li>結果：調整執行架構後，錯誤從頻繁出現降到基本為零。</li>
+          </ul>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 62%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide" data-title="成果二">
+      <div class="content">
+        <header>
+          <p class="kicker">04 / Achievement</p>
+          <h2>規格文件轉換工具</h2>
+        </header>
+        <div class="body">
+          <div class="metric">5 天 <span>→</span> 幾分鐘</div>
+          <ul class="points">
+            <li>將數百個 CSR 與 bitfield 定義，自動解析成 JSON、GDB XML 與 C header。</li>
+            <li>與 Architecture Team 確認規格歧義，把回饋納入轉換邏輯。</li>
+            <li>後續規格更新只要重跑腳本，降低人工錯誤與版本維護成本。</li>
+          </ul>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 75%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide" data-title="近期方向">
+      <div class="content">
+        <header>
+          <p class="kicker">05 / Recent Work</p>
+          <h2>近期：AI Agent 與全端 PWA</h2>
+        </header>
+        <div class="body columns">
+          <article class="panel">
+            <h3>Travel Dashboard</h3>
+            <p>個人 side project，實作 Offline-first PWA、Firestore 同步、文件匯入與旅遊資料管理。</p>
+            <a class="project-link" href="https://michelle-hsieh.github.io/travel-dashboard/" target="_blank" rel="noopener noreferrer">開啟專案頁面</a>
+          </article>
+          <article class="panel">
+            <h3>AI Integration</h3>
+            <p>整合多模型 API、Function Calling、AI Agent workflow、文件解析與座標自動補齊。</p>
+          </article>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 87%"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="slide center-only" data-title="謝謝">
+      <div class="content">
+        <div class="body">
+          <h2>謝謝</h2>
+        </div>
+        <footer class="footer">
+          <div class="progress"><span style="--progress: 100%"></span></div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <nav class="controls" aria-label="投影片控制">
+    <button type="button" id="prev" aria-label="上一頁">‹</button>
+    <div class="counter" id="counter">1 / 8</div>
+    <button type="button" id="next" aria-label="下一頁">›</button>
+  </nav>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const prevButton = document.querySelector("#prev");
+    const nextButton = document.querySelector("#next");
+    const counter = document.querySelector("#counter");
+    let current = 0;
+
+    function showSlide(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      counter.textContent = `${current + 1} / ${slides.length}`;
+      prevButton.disabled = current === 0;
+      nextButton.disabled = current === slides.length - 1;
+      document.title = `${slides[current].dataset.title}｜謝秀玟面試自我介紹`;
+    }
+
+    prevButton.addEventListener("click", () => showSlide(current - 1));
+    nextButton.addEventListener("click", () => showSlide(current + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        showSlide(current + 1);
+      }
+
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        showSlide(current - 1);
+      }
+
+      if (event.key === "Home") {
+        showSlide(0);
+      }
+
+      if (event.key === "End") {
+        showSlide(slides.length - 1);
+      }
+    });
+
+    showSlide(0);
+  </script>
+</body>
+</html>
