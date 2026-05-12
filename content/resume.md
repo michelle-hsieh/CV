@@ -19,7 +19,7 @@
 ## Experience
 
 **晶心科技股份有限公司｜高級工程師｜2023.10 – 2026.05**
-- 負責嵌入式開發環境的開發工具界面與視圖、工具平台功能開發，包括效能分析、暫存器視覺化與多核心除錯。
+- 負責嵌入式 IDE 的功能與視圖開發，包含除錯、效能分析、暫存器視覺化與多核心除錯。
 - 重構 GUI 自動化測試流程，解決 flaky test 與 pipeline 阻塞問題（[Key Achievements #1](#achievement-1)）
 - 開發 SPA 規格解析工具，將手工作業由 5 天縮短至數分鐘（[Key Achievements #3](#achievement-3)）
 - 完成 AutoOpTune Web View 與舊環境相容性處理，並推進 Multi-Project / Multi-core Debug 與視圖重構（[Key Achievements #2](#achievement-2)、[#5](#achievement-5)、[#6](#achievement-6)）
